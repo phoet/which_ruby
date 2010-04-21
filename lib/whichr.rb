@@ -2,15 +2,17 @@ module Whichr
 
 # TODO add some name mapping rbx vs rubinius f.e.
 
-  def type
-    return :"#{engine}" unless engine.nil?
+  def r_type
+    return :"#{engine.downcase}" unless engine.nil?
     description.match(/\A([^\s]+)/)
     :"#{$1.downcase}"
   end
   
-  def which?(ruby)
-    type == ruby
+  def which_r?(ruby)
+    r_type == ruby
   end
+  
+  alias_method :r?, :which_r?
 
   def version
     RUBY_VERSION
