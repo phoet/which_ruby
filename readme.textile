@@ -1,11 +1,9 @@
 h2. About
 
-*which r* is a simple helper for checking running Ruby engine
+*which_ruby* is a simple helper for checking running Ruby engine
 
 h2. Usage
 
 <pre>
-include Whichr
-
 
 </pre>
