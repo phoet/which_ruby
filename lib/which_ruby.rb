@@ -1,55 +1,79 @@
 module WhichRuby
 
-# TODO add some name mapping rbx vs rubinius f.e.
+    @@mappings = {
+      :rbx => :rubinious,
+    }
+    
+    @@rubies = [:ruby, :jruby, :rubinius, :ree]
 
   def ruby_type
-    return :"#{engine.downcase}" unless engine.nil?
-    description.match(/\A([^\s]+)/)
+    return :"#{ruby_engine.downcase}" unless ruby_engine.nil?
+    ruby_description.match(/\A([^\s]+)/)
     :"#{$1.downcase}"
   end
   
   alias_method :rt, :ruby_type
   
   def is_ruby_type?(type)
-    ruby_type == type
+    ruby_type == (@@mappings[type] || type)
   end
   
   alias_method :r?, :is_ruby_type?
-
-  def version
+  
+  def ruby_version
     RUBY_VERSION
   end
   
-  def description
+  def ruby_description
     RUBY_DESCRIPTION
   end
   
-  def copyright
+  def ruby_copyright
     RUBY_COPYRIGHT
   end
 
-  def patchlevel
+  def ruby_patchlevel
     RUBY_PATCHLEVEL
   end
 
-  def platform
+  def ruby_platform
     RUBY_PLATFORM
   end
 
-  def release_date
+  def ruby_release_date
     RUBY_RELEASE_DATE
   end
 
-  def revision
+  def ruby_revision
     RUBY_REVISION
   rescue
     nil
   end
 
-  def engine
+  def ruby_engine
     RUBY_ENGINE
   rescue
     nil
+  end
+
+  def respond_to?(sym)
+    contains_ruby_type?(strip_sym(sym)) || super(sym)
+  end
+  
+  def method_missing(sym, *args, &block)
+    name = strip_sym(sym)
+    return is_ruby_type?(name) if contains_ruby_type?(name)
+    super(sym, *args, &block)
+  end
+  
+  private
+  
+  def strip_sym(sym)
+    sym.to_s.downcase[0..-2].to_sym
+  end
+  
+  def contains_ruby_type?(name)
+    @@rubies.include? name
   end
 
 end

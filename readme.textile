@@ -1,28 +1,45 @@
 h2. About
 
-*which_ruby* is a simple helper for checking running Ruby engine
+*which_ruby* is a simple helper for checking running Ruby engine.
 
 h2. Usage
 
+include WhichRuby:
 <pre>
-rvm use 1.8.7
+rvm use jruby
 gem install which_ruby
 irb
  > require 'which_ruby'
 => true 
  > include WhichRuby
-=> Object 
+=> Object
+</pre>
+
+access the API:
+<pre>
  > ruby_type
-=> :ruby 
- > is_ruby_type? :ruby
+=> :jruby
+ > rt
+=> :jruby
+ > is_ruby_type? :jruby
 => true 
- > r? :ruby and rt == :ruby
+ > r? :jruby
+=> true 
+ > jruby?
 => true
+</pre>
+
+h2. Examples
+
+Run the examples with different runtimes, jruby for example:
+
+<pre>
+rvm use jruby
+ruby examples/ex.rb
 </pre>
 
 h2. TODO
 
 * improve me!
 * more docs
-* sensible symbol naming mapping
 * more todos
