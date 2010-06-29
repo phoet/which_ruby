@@ -1,10 +1,10 @@
 h2. About
 
-*which_ruby* is a simple helper for checking running Ruby engine.
+*which_ruby* is a simple helper for checking running Ruby engines.
 
 h2. Usage
 
-include WhichRuby:
+include WhichRuby in irb:
 <pre>
 rvm use jruby
 gem install which_ruby

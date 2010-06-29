@@ -1,10 +1,10 @@
 module WhichRuby
 
     @@mappings = {
-      :rbx => :rubinious,
+      :rubinius => :rbx,
     }
     
-    @@rubies = [:ruby, :jruby, :rubinius, :ree]
+    @@rubies = [:ruby, :jruby, :rbx]
 
   def ruby_type
     return :"#{ruby_engine.downcase}" unless ruby_engine.nil?
@@ -73,7 +73,7 @@ module WhichRuby
   end
   
   def contains_ruby_type?(name)
-    @@rubies.include? name
+    @@rubies.include?(@@mappings[name] || name)
   end
 
 end

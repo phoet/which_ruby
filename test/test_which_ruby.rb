@@ -16,7 +16,7 @@ class TestWhichRuby < Test::Unit::TestCase
   
   def test_r_type_from_description
     @helper.stubs(:ruby_engine).returns(nil)
-    @helper.stubs(:ruby_description).returns("ruby 1.8.7 (2010-01-10 patchlevel 249) [i686-darwin10.2.0]")
+    @helper.stubs(:ruby_description).returns("ruby 1.8.7 (2010-04-19 patchlevel 253) [i686-darwin10.4.0], MBARI 0x6770, Ruby Enterprise Edition 2010.02")
     
     assert_equal(:ruby, @helper.ruby_type)
   end
@@ -28,6 +28,11 @@ class TestWhichRuby < Test::Unit::TestCase
   def test_which_r?
     assert_equal(true, @helper.is_ruby_type?(:ruby))
     assert_equal(true, @helper.r?(:ruby))
+  end
+  
+  def test_which_r_with_mapping?
+    @helper.stubs(:ruby_engine).returns("rbx")
+    assert_equal(true, @helper.r?(:rubinius))
   end
   
   def test_respond_to?

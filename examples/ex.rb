@@ -4,9 +4,10 @@ require 'which_ruby'
 
 include WhichRuby
 
-%w{jruby ruby ree rubinius}.each do |ru|
+puts "running on #{ruby_type} #{ruby_description}"
+%w{jruby ruby rubinius}.each do |ru|
   puts "checking #{ru}?"
   check = send(:"#{ru}?")
   puts "  #{ru} is #{check}"
-  puts "  with version #{version}" if check
+  puts "  with version #{ruby_version}" if check
 end
