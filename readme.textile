@@ -5,6 +5,7 @@ h2. About
 h2. Usage
 
 include WhichRuby in irb:
+
 <pre>
 rvm use jruby
 gem install which_ruby
@@ -16,6 +17,7 @@ irb
 </pre>
 
 access the API:
+
 <pre>
  > ruby_type
 => :jruby
