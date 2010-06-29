@@ -15,10 +15,15 @@ module WhichRuby
   alias_method :rt, :ruby_type
   
   def is_ruby_type?(type)
+    type = type.to_sym
     ruby_type == (@@mappings[type] || type)
   end
   
   alias_method :r?, :is_ruby_type?
+  
+  def ruby_scope(type)
+    yield if is_ruby_type?(type)
+  end
   
   def ruby_version
     RUBY_VERSION

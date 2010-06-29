@@ -10,4 +10,5 @@ puts "running on #{ruby_type} #{ruby_description}"
   check = send(:"#{ru}?")
   puts "  #{ru} is #{check}"
   puts "  with version #{ruby_version}" if check
+  ruby_scope(ru){puts "  running in scope"}
 end

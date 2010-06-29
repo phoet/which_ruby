@@ -45,4 +45,9 @@ class TestWhichRuby < Test::Unit::TestCase
     assert_equal(true, @helper.jruby?)
   end
   
+  def test_ruby_scope
+    @helper.stubs(:ruby_engine).returns("jruby")
+    assert_equal("foo", @helper.ruby_scope(:jruby){"foo"})
+    assert_equal(nil, @helper.ruby_scope(:ree){"foo"})
+  end
 end

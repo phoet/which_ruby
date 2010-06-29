@@ -31,6 +31,15 @@ access the API:
 => true
 </pre>
 
+define execution scopes:
+
+<pre>
+ > ruby_scope(:jruby){"foo"}
+=> "foo"
+ > ruby_scope(:rbx){"foo"}
+=> nil
+</pre>
+
 h2. Examples
 
 Run the examples with different runtimes, jruby for example:
